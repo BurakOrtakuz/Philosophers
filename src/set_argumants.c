@@ -6,7 +6,7 @@
 /*   By: bortakuz <bortakuz@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 15:28:02 by bortakuz          #+#    #+#             */
-/*   Updated: 2023/09/12 15:04:42 by bortakuz         ###   ########.fr       */
+/*   Updated: 2023/09/12 15:51:56 by bortakuz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ static void	set_basic_data(t_data *data, char **av)
 		data->all_philos[i].is_dead = 0;
 		data->all_philos[i].total_eat = &data->total_eat_number;
 		data->all_philos[i].start = &data->start;
+		data->all_philos[i].number_of_philo = data->number_of_philo;
 		i++;
 	}
 }

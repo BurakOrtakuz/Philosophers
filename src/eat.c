@@ -6,7 +6,7 @@
 /*   By: bortakuz <bortakuz@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 13:28:02 by bortakuz          #+#    #+#             */
-/*   Updated: 2023/09/12 15:10:38 by bortakuz         ###   ########.fr       */
+/*   Updated: 2023/09/12 15:55:30 by bortakuz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@
 void	*eat(void *new_data)
 {
 	t_philosophers *data = (t_philosophers *)(new_data);
-
+	
+	if(data->id == data->number_of_philo || data->id == 1)
+		ft_usleep(2);
 	while (data->is_dead == 0)
 	{
-		if(((*(data->total_eat)) / 5) == data->plate_times)
+		if(((*(data->total_eat)) / data->number_of_philo) == data->plate_times)
 		{
 			pthread_mutex_lock(data->right_fork);
 			printf("%lu %d has taken a fork\n",get_time() - *(data->start), data->id + 1);

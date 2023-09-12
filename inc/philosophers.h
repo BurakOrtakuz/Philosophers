@@ -6,7 +6,7 @@
 /*   By: bortakuz <bortakuz@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:33:21 by bortakuz          #+#    #+#             */
-/*   Updated: 2023/09/12 15:04:19 by bortakuz         ###   ########.fr       */
+/*   Updated: 2023/09/12 15:51:33 by bortakuz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_philosophers
 	int				plate_times;
 	int				is_dead;
 	int				death_time;
+	int				number_of_philo;
 	uint64_t		*start;
 }	t_philosophers;
 
