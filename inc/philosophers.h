@@ -6,7 +6,7 @@
 /*   By: bortakuz <bortakuz@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:33:21 by bortakuz          #+#    #+#             */
-/*   Updated: 2023/09/16 15:59:59 by bortakuz         ###   ########.fr       */
+/*   Updated: 2023/09/16 18:30:13 by bortakuz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,35 +17,31 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+typedef struct s_data
+{
+	pthread_t		death_monitor;
+	pthread_mutex_t	*forks;
+	int				eat_time;
+	int				sleep_time;
+	int				death_time;
+	int				number_of_philo;
+	int				total_eaten_meal;
+	int				total_meal;
+	uint64_t		start;
+}	t_data;
+
 typedef struct s_philosophers
 {
 	int				id;
+	pthread_t		philo;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-	int				eat_time;
-	int				*total_eat;
 	int				remain_death_time;
-	int				sleep_time;
-	int				plate_times;
+	int				eaten_meal;
+	int				total_meal;
 	int				is_dead;
-	int				death_time;
-	int				number_of_philo;
-	uint64_t		*start;
+	t_data			*data;
 }	t_philosophers;
-
-typedef struct s_data
-{
-	pthread_t		*threads;
-	pthread_t		death_monitor;
-	pthread_mutex_t	*forks;
-	int				number_of_philo;
-	int				total_eat_number;
-	int				total_plate;
-	uint64_t		start;
-	t_philosophers	*all_philos;
-	pthread_mutex_t	total;
-	pthread_mutex_t	number;
-}	t_data;
 
 void		print_error(char *massage);
 void		exit_philo(t_data *data);
@@ -53,7 +49,7 @@ void		exit_philo(t_data *data);
 int			ft_atoi(const char *str);
 
 void		checker(int ac, char **av);
-void		set_all_argumants(t_data *data, char **av);
+void		set_all_argumants(t_philosophers *philo, char **av);
 
 int			ft_usleep(useconds_t time);
 u_int64_t	get_time(void);
