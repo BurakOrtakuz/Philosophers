@@ -6,7 +6,7 @@
 /*   By: bortakuz <bortakuz@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 18:55:05 by bortakuz          #+#    #+#             */
-/*   Updated: 2023/09/16 18:38:53 by bortakuz         ###   ########.fr       */
+/*   Updated: 2023/09/16 18:46:00 by bortakuz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@
 void	*monitor(void *new_data)
 {
 	t_philosophers	*philo;
+	t_philosophers	**philo_temp;
 	t_data			*data;
 	int				i;
 	int				stop;
 
-	philo = (t_philosophers *)new_data;
+	philo_temp = (t_philosophers **)(new_data);
+	philo = *philo_temp;
 	data = philo[0].data;
 	data->start = get_time() - 1;
 	while (1)

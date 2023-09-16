@@ -6,17 +6,19 @@
 /*   By: bortakuz <bortakuz@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 15:28:02 by bortakuz          #+#    #+#             */
-/*   Updated: 2023/09/16 18:43:00 by bortakuz         ###   ########.fr       */
+/*   Updated: 2023/09/16 18:48:19 by bortakuz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philosophers.h"
 
+#include <stdio.h>
 void	set_threads(t_data *data, t_philosophers *all_philos)
 {
 	int	i;
 
-	pthread_create(&data->death_monitor, NULL, monitor, all_philos);
+	getchar();
+	pthread_create(&data->death_monitor, NULL, monitor, (void *)(&all_philos));
 	i = -1;
 	while (i++, i < data->number_of_philo)
 	{
@@ -99,11 +101,11 @@ static void	set_basic_data(t_data *data, char **av)
 
 void	set_all_argumants(t_philosophers *philo, char **av)
 {
-	t_data	*data;
+	t_data	data;
 
-	data = NULL;
-	set_basic_data(data, av);
-	set_philos(data, philo);
-	set_forks(data, philo);
-	set_threads(data, philo);
+	set_basic_data(&data, av);
+	set_philos(&data, philo);
+	set_forks(&data, philo);
+		getchar();
+	set_threads(&data, philo);
 }
