@@ -6,7 +6,7 @@
 /*   By: bortakuz <bortakuz@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 15:28:02 by bortakuz          #+#    #+#             */
-/*   Updated: 2023/09/12 15:51:56 by bortakuz         ###   ########.fr       */
+/*   Updated: 2023/09/16 16:10:53 by bortakuz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	set_threads(t_data *data)
 	int	i;
 
 	data->threads = (pthread_t *)malloc(sizeof(pthread_t)
-		* data->number_of_philo);
+			* data->number_of_philo);
 	pthread_create(&data->death_monitor, NULL, monitor, data);
 	i = -1;
 	while (i++, i < data->number_of_philo)
@@ -54,7 +54,8 @@ static void	set_forks(t_data *data)
 	i = -1;
 	while (i++, i < data->number_of_philo)
 	{
-		data->all_philos[i].left_fork = &data->forks[(i + 1) % data->number_of_philo];
+		data->all_philos[i].left_fork = &data->forks[(i + 1)
+			% data->number_of_philo];
 		data->all_philos[i].right_fork = &data->forks[i];
 	}
 }
@@ -79,8 +80,9 @@ static void	set_basic_data(t_data *data, char **av)
 	data->total_plate = temp_total_eat;
 	data->total_eat_number = 0;
 	data->start = 0;
-	data->all_philos = (t_philosophers *)malloc(sizeof(t_philosophers) * data->number_of_philo);
-	while(i < data->number_of_philo)
+	data->all_philos = (t_philosophers *)malloc(sizeof(t_philosophers)
+			* data->number_of_philo);
+	while (i < data->number_of_philo)
 	{
 		data->all_philos[i].id = i;
 		data->all_philos[i].eat_time = temp_eat_time;

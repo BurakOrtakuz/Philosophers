@@ -6,7 +6,7 @@
 /*   By: bortakuz <bortakuz@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:33:21 by bortakuz          #+#    #+#             */
-/*   Updated: 2023/09/12 15:51:33 by bortakuz         ###   ########.fr       */
+/*   Updated: 2023/09/16 15:59:59 by bortakuz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include <pthread.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdint.h>
-#include <stdio.h>
 
 typedef struct s_philosophers
 {
@@ -45,8 +43,8 @@ typedef struct s_data
 	int				total_plate;
 	uint64_t		start;
 	t_philosophers	*all_philos;
-	pthread_mutex_t total;
-	pthread_mutex_t number;
+	pthread_mutex_t	total;
+	pthread_mutex_t	number;
 }	t_data;
 
 void		print_error(char *massage);

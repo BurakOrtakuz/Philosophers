@@ -6,7 +6,7 @@
 /*   By: bortakuz <bortakuz@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 18:55:05 by bortakuz          #+#    #+#             */
-/*   Updated: 2023/09/12 15:53:49 by bortakuz         ###   ########.fr       */
+/*   Updated: 2023/09/16 14:51:37 by bortakuz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void	*monitor(void *new_data)
 		while (i++, i < data->number_of_philo)
 		{
 			data->all_philos[i].remain_death_time--;
-			if(data->total_plate == -1 || (data->total_eat_number / data->number_of_philo) < data->total_plate)
+			if (data->total_plate == -1 || (data->total_eat_number / data->number_of_philo) < data->total_plate)
 				stop = 0;
-			if(data->all_philos[i].remain_death_time <= 0)
+			if (data->all_philos[i].remain_death_time <= 0)
 			{
-				printf("%lu %d philo dead\n", get_time() - data->start, i + 1);			
+				printf("%llu %d philo dead\n", get_time() - data->start, i + 1);			
 				i = -1;
 				while (i++, i< data->number_of_philo)
 				{
