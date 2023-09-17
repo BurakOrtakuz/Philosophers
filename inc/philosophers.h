@@ -6,7 +6,7 @@
 /*   By: bortakuz <bortakuz@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:33:21 by bortakuz          #+#    #+#             */
-/*   Updated: 2023/09/16 18:30:13 by bortakuz         ###   ########.fr       */
+/*   Updated: 2023/09/17 15:21:11 by bortakuz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct s_philosophers
 	pthread_mutex_t	*right_fork;
 	int				remain_death_time;
 	int				eaten_meal;
-	int				total_meal;
 	int				is_dead;
 	t_data			*data;
 }	t_philosophers;

@@ -6,23 +6,46 @@
 /*   By: bortakuz <bortakuz@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 18:55:05 by bortakuz          #+#    #+#             */
-/*   Updated: 2023/09/16 18:46:00 by bortakuz         ###   ########.fr       */
+/*   Updated: 2023/09/17 13:44:56 by bortakuz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philosophers.h"
 #include <stdio.h>
 
+static void	philo_exit(t_philosophers *philo)
+{
+	int	i;
+
+	i = -1;
+	while (i++, i < philo[0].data->number_of_philo)
+	{
+		philo[i].is_dead = 1;
+	}
+	i = -1;
+	while (i++, i < philo[0].data->number_of_philo)
+	{
+		pthread_mutex_destroy(&philo[i].data->forks[i]);
+	}
+	free(philo[0].data->forks);
+	free(philo);
+	exit(0);
+}
+
+static void	death(t_philosophers *philo, int i)
+{
+	printf("%llu %d philo dead\n", get_time() - philo[0].data->start, i + 1);
+	philo_exit(philo);
+}
+
 void	*monitor(void *new_data)
 {
 	t_philosophers	*philo;
-	t_philosophers	**philo_temp;
 	t_data			*data;
 	int				i;
 	int				stop;
 
-	philo_temp = (t_philosophers **)(new_data);
-	philo = *philo_temp;
+	philo = *(t_philosophers **)(new_data);
 	data = philo[0].data;
 	data->start = get_time() - 1;
 	while (1)
@@ -36,25 +59,10 @@ void	*monitor(void *new_data)
 					/ data->number_of_philo) < data->total_meal)
 				stop = 0;
 			if (philo[i].remain_death_time <= 0)
-			{
-				printf("%llu %d philo dead\n", get_time() - data->start, i + 1);
-				i = -1;
-				while (i++, i < data->number_of_philo)
-				{
-					philo[i].is_dead = 1;
-				}
-				exit(0);
-			}
+				death(philo, i);
 		}
 		if (stop == 1)
-		{
-			i = -1;
-			while (i++, i < data->number_of_philo)
-			{
-				philo[i].is_dead = 1;
-			}
-			exit(0);
-		}
+			philo_exit(philo);
 		ft_usleep(1);
 	}
 }

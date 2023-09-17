@@ -6,18 +6,16 @@
 /*   By: bortakuz <bortakuz@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 15:28:02 by bortakuz          #+#    #+#             */
-/*   Updated: 2023/09/16 18:48:19 by bortakuz         ###   ########.fr       */
+/*   Updated: 2023/09/17 13:45:29 by bortakuz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philosophers.h"
 
-#include <stdio.h>
 void	set_threads(t_data *data, t_philosophers *all_philos)
 {
 	int	i;
 
-	getchar();
 	pthread_create(&data->death_monitor, NULL, monitor, (void *)(&all_philos));
 	i = -1;
 	while (i++, i < data->number_of_philo)
@@ -31,11 +29,6 @@ void	set_threads(t_data *data, t_philosophers *all_philos)
 	{
 		pthread_join(all_philos[i].philo, NULL);
 	}
-	i = -1;
-	while (i++, i < data->number_of_philo)
-	{
-		pthread_mutex_destroy(&data->forks[i]);
-	}
 }
 
 static void	set_forks(t_data *data, t_philosophers *all_philos)
@@ -45,7 +38,7 @@ static void	set_forks(t_data *data, t_philosophers *all_philos)
 	data->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
 			* data->number_of_philo);
 	i = -1;
-	while (++i, i < 5)
+	while (++i, i < data->number_of_philo)
 	{
 		pthread_mutex_init(&data->forks[i], NULL);
 	}
@@ -63,8 +56,6 @@ static void	set_philos(t_data *data, t_philosophers	*all_philos)
 	int	i;
 
 	i = 0;
-	all_philos = (t_philosophers *)malloc(sizeof(t_philosophers)
-			* data->number_of_philo);
 	while (i < data->number_of_philo)
 	{
 		all_philos[i].id = i;
@@ -104,8 +95,9 @@ void	set_all_argumants(t_philosophers *philo, char **av)
 	t_data	data;
 
 	set_basic_data(&data, av);
+	philo = (t_philosophers *)malloc(sizeof(t_philosophers)
+			* data.number_of_philo);
 	set_philos(&data, philo);
 	set_forks(&data, philo);
-		getchar();
 	set_threads(&data, philo);
 }

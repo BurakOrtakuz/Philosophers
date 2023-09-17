@@ -13,8 +13,6 @@ SRC     =   ./src/utils/ft_atoi.c \
 all:    			$(NAME)
 $(NAME):
 					$(CC) $(FLAGS) -o ./bin/$(NAME) $(SRC)
-exe:				$(NAME)
-					./so_long
 clean:
 					make -C clean
 fclean:				clean
