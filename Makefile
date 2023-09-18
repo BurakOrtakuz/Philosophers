@@ -16,6 +16,7 @@ MAIN	=	$(SRC_DIR)/main.c
 
 all:    			$(NAME)
 $(NAME):			$(MAIN) $(OBJS)
+					@mkdir -p ./bin
 					$(CC) $(FLAGS) $^ -o ./bin/$@
 
 $(OBJ_DIR)/%.o: 	$(SRC_DIR)/%.c
@@ -26,7 +27,7 @@ clean:
 					rm -rf $(OBJ_DIR) $(MAIN_EXECUTABLE)
 
 fclean:				clean
-					rm -rf ./bin/$(NAME)
+					rm -rf ./bin
 
 re:					fclean all
 .PHONY:				all clean fclean re
