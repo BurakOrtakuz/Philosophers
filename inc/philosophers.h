@@ -6,7 +6,7 @@
 /*   By: bortakuz <bortakuz@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:33:21 by bortakuz          #+#    #+#             */
-/*   Updated: 2023/09/17 15:21:11 by bortakuz         ###   ########.fr       */
+/*   Updated: 2023/09/17 15:47:19 by bortakuz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_data
 	int				number_of_philo;
 	int				total_eaten_meal;
 	int				total_meal;
+	pthread_mutex_t	print;
 	uint64_t		start;
 }	t_data;
 

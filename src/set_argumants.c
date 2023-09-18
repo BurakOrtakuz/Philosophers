@@ -6,7 +6,7 @@
 /*   By: bortakuz <bortakuz@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 15:28:02 by bortakuz          #+#    #+#             */
-/*   Updated: 2023/09/17 13:45:29 by bortakuz         ###   ########.fr       */
+/*   Updated: 2023/09/17 15:48:10 by bortakuz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ static void	set_basic_data(t_data *data, char **av)
 		temp_total_eat = ft_atoi(av[5]);
 	else
 		temp_total_eat = -1;
+	pthread_mutex_init(&data->print, NULL);
 	data->total_meal = temp_total_eat;
 	data->total_eaten_meal = 0;
 	data->start = 0;
